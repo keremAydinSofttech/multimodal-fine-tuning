@@ -102,7 +102,6 @@ class ModelTraining:
         processor = FuyuProcessor(image_processor=image_processor, tokenizer=tokenizer)
 
         data_args.processor = processor
-        data_args.tokenizer = tokenizer
 
         # Initialize the vision tokenizer
         model.config.mm_use_im_start_end = data_args.mm_use_im_start_end = model_args.mm_use_im_start_end

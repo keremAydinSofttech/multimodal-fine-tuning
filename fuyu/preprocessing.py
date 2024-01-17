@@ -176,7 +176,6 @@ class FuyuTrainer(Trainer):
         if self.args.group_by_modality_length:
             lengths = self.train_dataset.modality_lengths
             return LengthGroupedSampler(
-                # self.args.train_batch_size * self.args.gradient_accumulation_steps, # TODO: seems that we should not have gradient_accumulation_steps
                 self.args.train_batch_size,
                 world_size=self.args.world_size,
                 lengths=lengths,
@@ -225,3 +224,25 @@ def find_all_linear_names(model):
     if 'lm_head' in lora_module_names: # needed for 16-bit
         lora_module_names.remove('lm_head')
     return list(lora_module_names)
+
+
+def tokenizer_image_token(prompt, tokenizer, image_token_index=IMAGE_TOKEN_INDEX, return_tensors=None):
+    prompt_chunks = [tokenizer(chunk).input_ids for chunk in prompt.split('<image>')]
+
+    def insert_separator(X, sep):
+        return [ele for sublist in zip(X, [sep]*len(X)) for ele in sublist][:-1]
+
+    input_ids = []
+    offset = 0
+    if len(prompt_chunks) > 0 and len(prompt_chunks[0]) > 0 and prompt_chunks[0][0] == tokenizer.bos_token_id:
+        offset = 1
+        input_ids.append(prompt_chunks[0][0])
+
+    for x in insert_separator(prompt_chunks, [image_token_index] * (offset + 1)):
+        input_ids.extend(x[offset:])
+
+    if return_tensors is not None:
+        if return_tensors == 'pt':
+            return torch.tensor(input_ids, dtype=torch.long)
+        raise ValueError(f'Unsupported tensor type: {return_tensors}')
+    return input_ids
