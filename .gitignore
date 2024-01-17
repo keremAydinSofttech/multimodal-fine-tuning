@@ -1,2 +1,5 @@
 env
 data
+llava/env
+fuyu/env
+fuyu/8b_base_model_release
