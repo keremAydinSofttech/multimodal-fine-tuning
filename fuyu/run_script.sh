@@ -1,8 +1,8 @@
     --lora_enable True 
     --model_name_or_path adept-hf-collab/fuyu-8b
     --version v1.5
-    --data_path data.json 
-    --image_folder ./train_dataset/images 
+    --data_path /mnt/keremaydin/data/data_clean.json
+    --image_folder /mnt/keremaydin/data/images
     --mm_vision_select_layer -2 
     --mm_use_im_start_end False 
     --mm_use_im_patch_token False 
