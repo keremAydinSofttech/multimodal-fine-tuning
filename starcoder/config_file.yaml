@@ -1,0 +1,20 @@
+[readable]
+title = starcoder training for Pleatu Java
+experiments_number = 6_Experiments_batch_4_2
+code_language = java
+epoch = 10
+wandb_entity = kerem-aydin
+java_combined_full_train = ./train_dataset/java_combined_full_train.csv
+cbl_combined_full_train = ./train_dataset/cbl_combined_full_train.csv
+java_combined_full_test = ./train_dataset/java_combined_full_test.csv
+cbl_combined_full_test = ./train_dataset/cbl_combined_full_test.csv
+
+
+ustune_kayit_true_ayriayri_false = True
+ana_dataset = ../../Datasets/Mantis-Shrimp-Eye-s-Collision-Avoidance/
+
+
+[changeable]
+threshold = 0.7
+video_path_file = ../../Datasets/7b6e1.mp4
+
