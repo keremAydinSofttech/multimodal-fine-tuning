@@ -8,7 +8,7 @@
     --mm_use_im_start_end False 
     --mm_use_im_patch_token False 
     --bf16 True 
-    --output_dir ./fine_tuning_llava_beta/Experiments_1
+    --output_dir ./fine_tuning_llava_beta/Experiments_2
     --num_train_epochs 1 
     --per_device_train_batch_size 16 
     --per_device_eval_batch_size 4 
@@ -23,7 +23,6 @@
     --lr_scheduler_type cosine 
     --logging_steps 1 
     --tf32 True 
-    --model_max_length 4096 
     --gradient_checkpointing True 
     --lazy_preprocess True 
     --dataloader_num_workers 4 

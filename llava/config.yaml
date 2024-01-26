@@ -1,9 +1,0 @@
-[readable]
-experiments_number = Experiments_1
-epoch = 1
-wandb_entity = kerem-aydin
-
-translation_combined_full_train = ../data/data.json
-
-[changeable]
-threshold = 0.7
