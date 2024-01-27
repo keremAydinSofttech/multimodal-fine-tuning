@@ -68,9 +68,9 @@ if __name__ == '__main__':
 
     print("----test basladı----")
 
-    model_llava = ModelFuyu()
+    model_fuyu = ModelFuyu()
     
-    prediction = model_llava.generate_answer(prompt= "Should I stop when I'm about to cross the street?", 
+    prediction = model_fuyu.generate_answer(prompt= "Should I stop when I'm about to cross the street?", 
                                              img_path='../data/individual_evaluation/commonse_reasoning.png')
 
     print(prediction)
