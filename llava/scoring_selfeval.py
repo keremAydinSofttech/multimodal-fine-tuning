@@ -15,14 +15,24 @@ def correct_or_not(reference, candidate):
     load_dotenv('/mnt/keremaydin/data/.env')
 
     prompt ="""
-            Your task is to compare the correct answer and prediction in order to see if the prediction is accurate. If the prediction is correct write 'TRUE' if not write 'FALSE'.       
+            Your task is to compare the correct answer and prediction in order to see if the prediction is accurate. 
+            If the prediction is semantically accurate write 'TRUE' if not write 'FALSE'.       
             <Example_1>:
             <Input>:
             answer: The table is made out of wood
             prediction: The table is made out of steel.
             </Input>
             <Output>:
-            NO
+            FALSE
+            </Output>
+            </Example_1>
+            <Example_1>:
+            <Input>:
+            answer: four
+            prediction: There are four bananas on the table.
+            </Input>
+            <Output>:
+            TRUE
             </Output>
             </Example_1>
             """

@@ -89,7 +89,7 @@ class ModelLLaVa:
 
         return img_tensor.to(dtype=self.model.dtype, device=self.model.device)
 
-    def generate_answer(self, prompt, img_path):
+    def generate_answer(self, prompt, img_path, max_length=20):
 
         """
         Generates answer from fine-tuned model
@@ -119,6 +119,7 @@ class ModelLLaVa:
                                 do_sample=True,
                                 temperature=0.01,
                                 use_cache=True,
+                                max_new_tokens=max_length,
                                 stopping_criteria=[stopping_criteria],)
 
         return self.tokenizer.decode(output_ids[0, input_ids.shape[1] :], 
