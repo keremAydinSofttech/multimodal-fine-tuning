@@ -24,7 +24,6 @@ class ModelLLaVa:
 
     def __init__(self):
         
-        self.experiments_number = '1'
         self.model = None
         self.tokenizer = None
         self.image_processor = None
@@ -43,12 +42,12 @@ class ModelLLaVa:
 
         disable_torch_init()
 
-        self.base_path = "./fine_tuning_llava_beta/" + self.experiments_number
+        self.base_path = "./fine_tuning_llava_beta/"
         
         # Parser extracts the parameters for arguments from run_script.sh
         parser = transformers.HfArgumentParser(
         (ModelArguments, DataArguments, TrainingArguments))
-        model_args, data_args, training_args = parser.parse_args_into_dataclasses(args_filename='/mnt/keremaydin/llava/run_script.sh')
+        model_args, data_args, training_args = parser.parse_args_into_dataclasses(args_filename='run_script.sh')
 
         self.model = LlavaLlamaForCausalLM.from_pretrained(
                     model_args.model_name_or_path,
@@ -133,7 +132,7 @@ if __name__ == '__main__':
     model_llava = ModelLLaVa()
     
     prediction = model_llava.generate_answer(prompt= 'Why is the car stopping?', 
-                                             img_path='/mnt/keremaydin/data/Screenshot.png')
+                                             img_path='../data/Screenshot.png')
 
     print(prediction)
 
