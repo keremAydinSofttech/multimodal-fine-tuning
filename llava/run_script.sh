@@ -1,8 +1,8 @@
     --lora_enable True 
     --model_name_or_path liuhaotian/llava-v1.5-13b
     --version v1.5
-    --data_path /mnt/keremaydin/data/data_clean.json 
-    --image_folder /mnt/keremaydin/data/images/
+    --data_path ../data/data_clean.json 
+    --image_folder ../data/images/
     --vision_tower openai/clip-vit-large-patch14 
     --mm_vision_select_layer -2 
     --mm_use_im_start_end False 
