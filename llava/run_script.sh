@@ -1,14 +1,14 @@
     --lora_enable True 
     --model_name_or_path liuhaotian/llava-v1.5-13b
     --version v1.5
-    --data_path data.json 
-    --image_folder ./train_dataset/images 
+    --data_path /mnt/keremaydin/data/data_clean.json 
+    --image_folder /mnt/keremaydin/data/images/
     --vision_tower openai/clip-vit-large-patch14 
     --mm_vision_select_layer -2 
     --mm_use_im_start_end False 
     --mm_use_im_patch_token False 
     --bf16 True 
-    --output_dir ./fine_tuning_llava_beta/Experiments_2
+    --output_dir ./fine_tuning_llava_beta/
     --num_train_epochs 1 
     --per_device_train_batch_size 16 
     --per_device_eval_batch_size 4 
