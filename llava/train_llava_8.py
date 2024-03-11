@@ -28,12 +28,13 @@ from transformers import BitsAndBytesConfig
 from peft import prepare_model_for_kbit_training
 from preprocessing  import *
 
+
 class ModelTraining:
 
     def __init__(self):
 
         self.wandb_entity = 'bulentsiyah-softtech'
-        self.wandb_project = 'llava_parameter_optimization'
+        self.wandb_project = 'llava_clock_experiments'
     
     def wandb_init(self,):
         
@@ -140,7 +141,7 @@ class ModelTraining:
         # Parser extracts the parameters for arguments from run_script.sh
         parser = transformers.HfArgumentParser(
         (ModelArguments, DataArguments, TrainingArguments))
-        model_args, data_args, training_args = parser.parse_args_into_dataclasses(args_filename='/mnt/bulentsiyah/multimodal-fine-tuning/llava/run_script_1.sh')
+        model_args, data_args, training_args = parser.parse_args_into_dataclasses(args_filename='/mnt/bulentsiyah/multimodal-fine-tuning/llava/run_script_10.sh')
 
         self.wandb_name = '-'.join(training_args.output_dir.split('/')[-3:])
         self.wandb_init()

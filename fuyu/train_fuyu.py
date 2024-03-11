@@ -7,7 +7,6 @@ from peft import (
 )
 import pathlib
 import wandb
-from configmanager import ConfigurationManager
 from transformers import FuyuForCausalLM
 from transformers.models.fuyu.processing_fuyu import FuyuProcessor
 from transformers.models.fuyu.image_processing_fuyu import FuyuImageProcessor

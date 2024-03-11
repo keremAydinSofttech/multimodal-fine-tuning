@@ -134,7 +134,7 @@ class LazySupervisedDataset(Dataset):
     def lengths(self):
         length_list = []
         for sample in self.list_data_dict:
-            img_tokens = 128 if 'image_id' in sample else 0
+            img_tokens = 128 if 'image' in sample else 0
             length_list.append(sum(len(conv['value'].split()) for conv in sample['conversations']) + img_tokens)
         return length_list
 
@@ -143,7 +143,7 @@ class LazySupervisedDataset(Dataset):
         length_list = []
         for sample in self.list_data_dict:
             cur_len = sum(len(conv['value'].split()) for conv in sample['conversations'])
-            cur_len = cur_len if 'image_id' in sample else -cur_len
+            cur_len = cur_len if 'image' in sample else -cur_len
             length_list.append(cur_len)
         return length_list
 
@@ -152,8 +152,8 @@ class LazySupervisedDataset(Dataset):
         if isinstance(i, int):
             sources = [sources]
         assert len(sources) == 1, "Don't know why it is wrapped to a list"  # FIXME
-        if 'image_id' in sources[0]:
-            image_file = self.list_data_dict[i]['image_id']
+        if 'image' in sources[0]:
+            image_file = self.list_data_dict[i]['image']
             image_folder = self.data_args.image_folder
             processor = self.image_processor
             ImageFile.LOAD_TRUNCATED_IMAGES = True
@@ -189,12 +189,12 @@ class LazySupervisedDataset(Dataset):
                              labels=data_dict["labels"][0])
 
         # image exist in the data
-        if 'image_id' in self.list_data_dict[i]:
-            data_dict['image_id'] = image
+        if 'image' in self.list_data_dict[i]:
+            data_dict['image'] = image
         elif self.data_args.is_multimodal:
             # image does not exist in the data, but the model is multimodal
             crop_size = self.image_processor.crop_size
-            data_dict['image_id'] = torch.zeros(3, crop_size['height'], crop_size['width'])
+            data_dict['image'] = torch.zeros(3, crop_size['height'], crop_size['width'])
 
         print(data_dict['labels'])
         return data_dict
